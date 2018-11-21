@@ -27,5 +27,9 @@ public class Point extends Model {
 	         suma = suma + (Integer)p.get("puntajeActual"); 
 	    }
 		return suma;
-	}	
+	}
+	
+	public int puntajeTotal() {
+    	return this.getInteger("puntajeTotal");
+	}
 }

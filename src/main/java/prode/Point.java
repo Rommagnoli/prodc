@@ -1,7 +1,7 @@
 package prode;
 
 import java.util.*;
-import org.javalite.activejdbc.Base;
+
 import static spark.Spark.*;
 import spark.*;
 import org.javalite.activejdbc.*;
@@ -16,6 +16,7 @@ public class Point extends Model {
 		p.set("idUser", idUser);
 		p.set("idFecha", idFecha);
 		p.saveIt();
+		
 	}
 	
 	public int puntajeTotal(int idUser) {
@@ -31,5 +32,18 @@ public class Point extends Model {
 	
 	public int puntajeTotal() {
     	return this.getInteger("puntajeTotal");
+	}	
+	
+	public static List<Point> listaPuntosPorFecha(int idFecha ) {
+		List<Point> busqueda = null;
+		if (idFecha != 0 ) {
+			busqueda  = Point.findBySQL("SELECT b.puntajeActual FROM users a JOIN points b ON a.id = b.idUser where b.idFecha = '"+idFecha+"' ORDER BY b.puntajeActual DESC");
+			return busqueda;
+		}
+		return null;
 	}
+	
+	public int puntajeActual() {
+    	return this.getInteger("puntajeActual");
+    }
 }

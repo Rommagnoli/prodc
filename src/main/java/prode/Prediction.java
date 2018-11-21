@@ -27,7 +27,6 @@ public class Prediction extends Model {
 		p.set("cod_partido", b);
 		p.saveIt();
 		
-		
 		golloc = (String) req.queryParams("elocal2");
 		golvis = (String) req.queryParams("evisit2");
 		
@@ -43,7 +42,6 @@ public class Prediction extends Model {
 		q.set("cod_partido", b);
 		q.saveIt();
 
-
 		golloc = (String) req.queryParams("elocal3");
 		golvis = (String) req.queryParams("evisit3");
 
@@ -51,15 +49,13 @@ public class Prediction extends Model {
 		golVisit = Integer.parseInt(golvis);
 		a = listMatch.get(2);
 		b = (Integer)a.get("cod_partido");
-	
-		
+			
 		Prediction r = new Prediction();
 		r.set("equipoL", golLocal);
 		r.set("equipoV", golVisit);
 		r.set("id_usuario", idUser);
 		r.set("cod_partido", b);
 		r.saveIt();
-
 
 		golloc = (String) req.queryParams("elocal4");
 		golvis = (String) req.queryParams("evisit4");
@@ -68,8 +64,7 @@ public class Prediction extends Model {
 		golVisit = Integer.parseInt(golvis);
 		a = listMatch.get(3);
 		b = (Integer)a.get("cod_partido");
-	
-		
+			
 		Prediction s = new Prediction();
 		s.set("equipoL", golLocal);
 		s.set("equipoV", golVisit);
@@ -77,11 +72,52 @@ public class Prediction extends Model {
 		s.set("cod_partido", b);
 		s.saveIt();
 
-
-		pred.put("exito", "Predicción realizada! MUCHA SUERTE!");
 		return pred;
 	}
 	
+	public Map modifPrediction(Request req, int idUser, List<Schadule> listMatch){
+		Map pred = new HashMap();
+
+		String golloc = (String) req.queryParams("elocal1");
+		String golvis = (String) req.queryParams("evisit1");
+		
+		Integer golLocal = Integer.parseInt(golloc);
+		Integer golVisit = Integer.parseInt(golvis);
+		Schadule fecha = listMatch.get(0);
+		Integer cPart = (Integer)fecha.get("cod_partido");
+		Prediction.update("equipoL = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golLocal);
+		Prediction.update("equipoV = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golVisit);
+		
+		golloc = (String) req.queryParams("elocal2");
+		golvis = (String) req.queryParams("evisit2");
+		fecha = listMatch.get(1);
+		cPart = (Integer)fecha.get("cod_partido");
+		golLocal = Integer.parseInt(golloc);
+		golVisit = Integer.parseInt(golvis);
+		Prediction.update("equipoL = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golLocal);
+		Prediction.update("equipoV = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golVisit);
+		
+		golloc = (String) req.queryParams("elocal3");
+		golvis = (String) req.queryParams("evisit3");
+		fecha = listMatch.get(2);
+		cPart = (Integer)fecha.get("cod_partido");
+		golLocal = Integer.parseInt(golloc);
+		golVisit = Integer.parseInt(golvis);
+		Prediction.update("equipoL = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golLocal);
+		Prediction.update("equipoV = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golVisit);
+		
+		golloc = (String) req.queryParams("elocal4");
+		golvis = (String) req.queryParams("evisit4");
+		fecha = listMatch.get(3);
+		cPart = (Integer)fecha.get("cod_partido");
+		golLocal = Integer.parseInt(golloc);
+		golVisit = Integer.parseInt(golvis);
+		Prediction.update("equipoL = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golLocal);
+		Prediction.update("equipoV = ?", "id_usuario = '"+idUser+"' AND cod_partido = '"+cPart+"'", golVisit);
+
+		return pred;
+	}
+		
 	public int compararPred(Prediction adm, Prediction user) {
 		if ((Integer)adm.get("equipoL") == (Integer)user.get("equipoL") && (Integer)adm.get("equipoV") == (Integer)user.get("equipoV"))
 			return 3;
@@ -103,11 +139,7 @@ public class Prediction extends Model {
 			if (j == (AdminList.size()-1)) {
 				j = 0;
 				idUser = (Integer)UserList.get(i-1).get("id_usuario");
-				//List<Point> points = Point.where("idUser = ? AND idFecha = ?", idUser, idFecha);
-				//Point p = points.get(0);
 				Point p = new Point();
-				//p.set("puntajeActual", result);
-				//p.puntajeTotal(idUser);
 				p.update("puntajeActual = ?", "idUser = '"+idUser+"' AND idFecha = '"+idFecha+"'", result);
 				int pTotal = p.puntajeTotal(idUser);
 				p.update("puntajeTotal = ?", "idUser = '"+idUser+"' AND idFecha = '"+idFecha+"'", pTotal);
@@ -116,16 +148,4 @@ public class Prediction extends Model {
 			j++;
 		}
 	}
-	
-	/*List<Point> points = Point.where("id = ?", id);
-	Point p = points.get(0);
-	p.set("puntajeActual", result);
-	p.puntajeTotal(p, id);
-	p.saveIt();
-	
-	List<User> user = User.where("id = ?", id);	
-	User u = user.get(0);
-	u.set("puntos", result);
-	u.saveIt();
-	*/
 }

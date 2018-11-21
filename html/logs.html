@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
   	<title>UserLogueado</title>
+  	<link rel= 'stylesheet' href='/css/logs.css'>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -12,9 +13,30 @@
       <div class="jumbotron bg-primary text-white">
       		<h1 align= "center"> Menu Principal </h1>
       </div>
+      
       <div class="col-3" align="center">
         <a href="/pronosticar" role ="button" type="button" class ="btn btn-primary">Pronosticar</a>
-      </div>
+        <br>
+	  	<br>
+	  	<a href="/modifpred" role ="button" type="button" class ="btn btn-primary">Modificar Pronostico</a>
+	  </div>
+      <h1 class="title"> Ultima fecha jugada </h1>
+      <div class="container">
+	      <div class="usuarios">
+	      	<ol>
+	      		{{#usuarios}} 
+	       			<li> {{username}} 
+	       		{{/usuarios}}	
+	      	</ol>
+	      </div>
+	      <div class="puntos">
+	      	<ul style="list-style-type:none">
+	      		{{#puntos}} 
+	       		<li> {{puntajeActual}} </li>
+	      		{{/puntos}}
+	      	</ul>
+	      </div>
+      </div> 
     </form>
   </body>
 </html>

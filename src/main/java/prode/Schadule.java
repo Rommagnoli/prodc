@@ -1,9 +1,6 @@
 package prode;
 
 import java.util.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.javalite.activejdbc.Model;
 
@@ -39,5 +36,17 @@ public class Schadule extends Model {
 	public int num_fecha() {
     	return this.getInteger("num_fecha");
     }
+	
+	public int ultimaFecha() {
+		int fecha = 0;
+		Schadule f = new Schadule();
+		List<Schadule> ultimaFecha = Schadule.findBySQL("Select num_fecha from schadules where cod_partido in(select cod_partido from predictions where id_usuario = 1) ");
+		if (ultimaFecha.size() != 0) {
+			f = ultimaFecha.get(0);
+			fecha = (Integer)f.get("num_fecha");
+			return  fecha;
+		}
+		return fecha;
+	}
 	
 }

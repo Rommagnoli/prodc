@@ -19,7 +19,7 @@ public class App{
 	
     public static void main( String[] args ) throws InterruptedException{ 
     	
-    
+    	staticFileLocation("/public");
     	/**
     	 * Apertura de la base de datos
     	 */
@@ -100,7 +100,14 @@ public class App{
    		get("/pronosticado", AppControl::pronosticarFecha, new MustacheTemplateEngine());
 
 	   	post("/pronosticado", AppControl::guardarPronFecha, new MustacheTemplateEngine());
-	}   
+	   	
+	   	get("/modifpred", AppControl::seleccionFechaModif, new MustacheTemplateEngine());
+
+	   	get("/modifpredcargada", AppControl::modPronFecha, new MustacheTemplateEngine());
+
+	   	post("/modifpredcargada", AppControl::guardarModPronFecha, new MustacheTemplateEngine());
+	   	
+	   	}   
     
     //Metricas
     

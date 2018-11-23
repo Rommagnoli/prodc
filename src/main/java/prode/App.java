@@ -98,8 +98,12 @@ public class App{
 	   	get("/pronosticar", AppControl::seleccionFecha, new MustacheTemplateEngine());
 
    		get("/pronosticado", AppControl::pronosticarFecha, new MustacheTemplateEngine());
-
-	   	post("/pronosticado", AppControl::guardarPronFecha, new MustacheTemplateEngine());
+   		
+   		post("/pronosticado", AppControl::guardarPronFecha, new MustacheTemplateEngine());
+   		
+   		get("/resultado", AppControl::seleccionarResultado, new MustacheTemplateEngine());
+   		
+   		get("/resultadocargado", AppControl::verResultado, new MustacheTemplateEngine());
 	   	
 	   	get("/modifpred", AppControl::seleccionFechaModif, new MustacheTemplateEngine());
 

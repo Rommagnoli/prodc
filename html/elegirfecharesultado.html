@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	<title>Pronosticos</title>
+  	<title>Elegir Resultado</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -9,25 +9,25 @@
 
   <body>
   	<div class="jumbotron bg-primary text-white">
-  			<h1 align= "center">Pronosticar Resultado</h1>
-  			<p align= "center">Seleccione la fecha a pronosticar</p>
+  			<h1 align= "center">Ver Resultado</h1>
+  			<p align= "center">Lista de fechas ya jugadas</p>
 	</div>
 	<div class="col-sm-3">
-		<form method = "get" action="/pronosticado">
-      		<div>
-        		<select name="fecha">
+		<form method = "get" action="/resultadocargado">
+  			<div>
+        		<select name="fecha2">
         			<option selected value=""> Elige la fecha </option>
         				{{#Fechas}}
           					<option value="{{num_fecha}}">{{num_fecha}}</option>
 						{{/Fechas}}      	
         		</select>
-      		</div>
-      		<br>
-        	<a href="/pronosticado"></a> <button type="submit" class="btn btn-primary mb-6">Go!</button>
-        	<br>
-        	<br>
-      		<input type="button" onclick="history.back()" name="volver atrás" value="volver atrás">  
-        </form> 
+  			</div>
+    		<br>
+    		<a href="/resultaocargado"></a> <button type="submit" class="btn btn-primary mb-6">Go!</button>
+    		<br>
+    		<br>
+  			<input type="button" onclick="history.back()" name="volver atrás" value="volver atrás">  
+    	</form> 
 	</div>
   </body>
 </html>

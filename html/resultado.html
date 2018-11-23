@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Resultados</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="jumbotron bg-primary text-white">
+        <h1 align= "center">Resultado de la fecha {{#.}} {{fecha}} {{/.}}  </h1>
+    </div>
+  <form method = "get" action="/resultadocargado">	
+  	<div class="row">
+    	<div class="col">
+    		<p>Tu pronostico</p>
+    		<ul>
+        	  <li> {{#.}} {{nombreEquipo1}} | {{golEquipo1}} {{golEquipo2}} | {{nombreEquipo5}}  {{/.}} </li>
+    		  <li> {{#.}} {{nombreEquipo2}} | {{golEquipo3}} {{golEquipo4}} | {{nombreEquipo6}}  {{/.}} </li>
+    		  <li> {{#.}} {{nombreEquipo3}} | {{golEquipo5}} {{golEquipo6}} | {{nombreEquipo7}}  {{/.}} </li>
+        	  <li> {{#.}} {{nombreEquipo4}} | {{golEquipo7}} {{golEquipo8}} | {{nombreEquipo8}}  {{/.}} </li>
+        	</ul>  
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col">
+    		<p>Resultado</p>
+    		<ul>
+        	  <li> {{#.}} {{nombreEquipo1}}  | {{golEquipoR1}} {{golEquipoR2}} | {{nombreEquipo5}}  {{/.}} </li>
+    		  <li> {{#.}} {{nombreEquipo2}} | {{golEquipoR3}} {{golEquipoR4}} | {{nombreEquipo6}}  {{/.}} </li>
+    		  <li> {{#.}} {{nombreEquipo3}} | {{golEquipoR5}} {{golEquipoR6}} | {{nombreEquipo7}}  {{/.}} </li>
+        	  <li> {{#.}} {{nombreEquipo4}} | {{golEquipoR7}} {{golEquipoR8}} | {{nombreEquipo8}}  {{/.}} </li>
+        	</ul>  
+    	</div>
+    </div>				
+     <br>
+     <br> 	
+   	<div align="left">
+      	<input type="button" onclick="history.back()" name="volver atrás" value="volver atrás"> 
+  	</div>
+  	</form>
+  </body>
+</html>

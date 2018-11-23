@@ -13,30 +13,35 @@
       <div class="jumbotron bg-primary text-white">
       		<h1 align= "center"> Menu Principal </h1>
       </div>
-      
-      <div class="col-3" align="center">
-        <a href="/pronosticar" role ="button" type="button" class ="btn btn-primary">Pronosticar</a>
-        <br>
-	  	<br>
-	  	<a href="/modifpred" role ="button" type="button" class ="btn btn-primary">Modificar Pronostico</a>
-	  </div>
-      <h1 class="title"> Ultima fecha jugada </h1>
-      <div class="container">
-	      <div class="usuarios">
-	      	<ol>
-	      		{{#usuarios}} 
-	       			<li> {{username}} 
-	       		{{/usuarios}}	
-	      	</ol>
-	      </div>
-	      <div class="puntos">
-	      	<ul style="list-style-type:none">
-	      		{{#puntos}} 
-	       		<li> {{puntajeActual}} </li>
-	      		{{/puntos}}
-	      	</ul>
-	      </div>
-      </div> 
+      <div class="row">
+      	<div class="col-sm-3" align="center">
+        	<a href="/pronosticar" role ="button" type="button" class ="btn btn-primary">Pronosticar</a>
+        	<br>
+	  		<br>
+	  		<a href="/modifpred" role ="button" type="button" class ="btn btn-primary">Modificar Pronostico</a>
+			<br>
+	  		<br>
+	  		<a href="/rank" role ="button" type="button" class ="btn btn-primary">Ver Ranking Total</a>	  	
+	  	</div>
+      	<div class="col">
+	  			<h1 class="title"> Ultima fecha jugada </h1>
+     		<div>
+	     		<div class="usuarios">
+	      			<ol>
+			      		{{#usuarios}} 
+			       			<li> {{username}} 
+			       		{{/usuarios}}	
+			      	</ol>
+			    </div>
+	      		<div class="puntos">
+			      	<ul style="list-style-type:none">
+			      		{{#puntos}} 
+			       			<li> {{puntajeActual}} </li>
+			      		{{/puntos}}
+			      	</ul>
+	      		</div>
+      		</div>
+      	</div> 
     </form>
   </body>
 </html>

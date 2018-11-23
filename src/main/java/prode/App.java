@@ -106,6 +106,8 @@ public class App{
 	   	get("/modifpredcargada", AppControl::modPronFecha, new MustacheTemplateEngine());
 
 	   	post("/modifpredcargada", AppControl::guardarModPronFecha, new MustacheTemplateEngine());
+
+	   	get("/rank", AppControl::verRank, new MustacheTemplateEngine());
 	   	
 	   	}   
     

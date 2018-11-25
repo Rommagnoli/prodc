@@ -10,36 +10,45 @@
   
   <body>
     <form method = "get" action="/logs">
-      <div class="jumbotron bg-primary text-white">
-      		<h1 align= "center"> Menu Principal </h1>
-      </div>
-      
-      <div class="col-3" align="center">
-        <a href="/pronosticar" role ="button" type="button" class ="btn btn-primary">Pronosticar</a>
-        <br>
-	  	<br>
-	  	<a href="/modifpred" role ="button" type="button" class ="btn btn-primary">Modificar Pronostico</a>
-	  	<br>
-	  	<br>
-	  	<a href="/resultado" role ="button" type="button" class ="btn btn-primary">Ver mis resultados</a>
-	  </div>
-      <h1 class="title"> Ultima fecha jugada </h1>
-      <div class="container">
-	      <div class="usuarios">
-	      	<ol>
-	      		{{#usuarios}} 
-	       			<li> {{username}} 
-	       		{{/usuarios}}	
-	      	</ol>
-	      </div>
-	      <div class="puntos">
-	      	<ul style="list-style-type:none">
-	      		{{#puntos}} 
-	       		<li> {{puntajeActual}} </li>
-	      		{{/puntos}}
-	      	</ul>
-	      </div>
-      </div> 
+    	<div class="jumbotron bg-primary text-white">
+      		<div align="center">
+	  			<div class="row">
+	  				<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  				<div class="col">
+	  					<h1 align="center">Menu Principal</h1>
+	  				</div>
+					<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  			</div>
+	  		</div>
+      	</div>
+      	<div class="row">
+	      	<div class="col-3" align="center">
+		      <a href="/pronosticar" role ="button" type="button" class ="btn btn-primary">Pronosticar</a>
+		      <br>
+			  <br>
+			  <a href="/modifpred" role ="button" type="button" class ="btn btn-primary">Modificar Pronostico</a>
+			  <br>
+			  <br>
+			  <a href="/resultado" role ="button" type="button" class ="btn btn-primary">Ver mis resultados</a>
+			</div>
+	        <div class="col" align="left">
+	          <h1 class="title"> Ultima fecha jugada </h1>
+	          <div class="usuarios">
+		      	<ol>
+		      		{{#usuarios}} 
+		       			<li> {{username}} 
+		       		{{/usuarios}}	
+		      	</ol>
+		      </div>
+		      <div class="puntos">
+		      	<ul style="list-style-type:none">
+		      		{{#puntos}} 
+		       		<li> {{puntajeActual}} </li>
+		      		{{/puntos}}
+		      	</ul>
+		      </div>
+      		</div> 
+    	</div>
     </form>
   </body>
 </html>

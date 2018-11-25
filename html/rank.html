@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Ranking</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  </head>
+  
+  <body>
+  	<form method = "get" action="/rank">
+    	<div class="jumbotron bg-primary text-white">
+      		<div class="container" align="center">
+	  	<div class="row">
+	  		<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  			<div class="col">
+	  				<h1 align= "center">Ranking de Usuarios</h1>
+	  				<p align= "center">Ranking de puntajes totales de los usuarios.</p>
+				</div>
+			<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  	</div>
+	  </div>
+    	</div>
+    	<div class="container" align="center">	
+	 		<div class="row">
+	     		<div class="usuarios">
+	      			<ol>
+			      		{{#usuarios}} 
+			       			<li> {{username}} 
+			       		{{/usuarios}}	
+			      	</ol>
+			    </div>
+	      		<div class="puntos">
+			      	<ul style="list-style-type:none">
+			      		{{#puntos}} 
+			       			<li> {{puntajeTotal}} </li>
+			      		{{/puntos}}
+			      	</ul>
+	      		</div>
+	      	</div>
+		</div>
+		<input type="button" class="btn btn-primary mb-6" onclick="history.back()" name="volver atrás" value="Volver atrás">
+    </form>
+  </body>
+</html>

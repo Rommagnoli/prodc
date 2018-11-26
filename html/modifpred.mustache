@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Pronosticos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  </head>
+
+  <body>
+  	<div class="jumbotron bg-primary text-white">
+  		<div class="container" align="center">
+	  	<div class="row">
+	  		<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  			<div class="col">
+	  				<h1 align= "center">Selecionar la Fecha</h1>
+	  				<p align= "center">Seleccione la fecha sobre la cual quiere modificar su prediccion.</p>
+				</div>
+			<img src="EscudoAFA2.png" class="rounded" width="100" height="100">
+	  	</div>
+	  </div>
+  	</div>
+	</div>
+	<div class="col-sm-3">
+		<form method = "get" action="/modifpredcargada">
+      		<div>
+        	<select name="fecha">
+        		<option selected value=""> Elige la fecha </option>
+        		{{#Fechas}}
+          			<option value="{{num_fecha}}">{{num_fecha}}</option>
+				{{/Fechas}}      	
+        	</select>
+      		</div>
+      		<br>
+        	<a href="/guardarmodiffecha"></a> <button type="submit" class="btn btn-primary mb-6">Modificar</button>      
+			<input type="button" class="btn btn-primary mb-6" onclick="history.back()" name="volver atrás" value="Volver atrás">		
+		</form> 
+	</div>
+  </body>
+</html>

@@ -113,6 +113,10 @@ public class App{
 
 	   	get("/rank", AppControl::verRank, new MustacheTemplateEngine());
 	   	
+	   	get("/selecUsuario", AppControl::seleccionDeUsuario, new MustacheTemplateEngine());
+        
+        get("/observarPuntaje", AppControl::chequearUsuario, new MustacheTemplateEngine());
+	   	
 	   	}   
     
     //Metricas

@@ -255,4 +255,67 @@ public class AppControl {
 		ranking.put("usuarios", usuarios);
 	   	return new ModelAndView (ranking, "./html/rank.html");
 	}
+	
+	public static ModelAndView seleccionDeUsuario(Request req, Response res) {
+        Map fechasUser = new HashMap();
+        List <Schadule> fecha = Schadule.findBySQL("SELECT DISTINCT num_fecha FROM schadules a  WHERE a.cod_partido IN (SELECT cod_partido FROM predictions b WHERE b.id_usuario = 1)");     
+   		if (fecha.size() > 0) {
+			fechasUser.put("Fechas", fecha);
+		}
+        return new ModelAndView (fechasUser, "./html/seleccionarUsuario.html");
+	}
+
+	public static ModelAndView chequearUsuario(Request req, Response res) {
+        User userLog = new User();
+        Map pronOtroUsuario = new HashMap();
+        if (userLog.checkUserName(req)) {
+        	Match pronTeams = new Match();
+        	String userLoguea = req.queryParams("user");
+        	List<User> idUsuario = User.findBySQL("Select id from users where username = '"+userLoguea+"'");
+        	userLog = idUsuario.get(0);
+            List<Match> teamsForPron = pronTeams.getMatchList();
+            String fech = (req.queryParams("fecha2"));
+            System.out.println(fech);
+            f = Integer.parseInt(fech);
+    			List<Team> eq1 = Team.findBySQL("SELECT nom_equipo FROM teams a JOIN matches b ON a.cod_equipo = b.equipo_local JOIN schadules i USING (cod_partido) WHERE (i.num_fecha = '"+f+"') order by b.cod_partido");
+    		    List<Team> eq2 = Team.findBySQL("SELECT nom_equipo FROM teams a JOIN matches b ON a.cod_equipo = b.equipo_visitante JOIN schadules i USING (cod_partido) WHERE (i.num_fecha = '"+f+"') order by b.cod_partido");
+    		    Team eqprima = eq1.get(0);
+    		    pronOtroUsuario.put("nombreEquipo1",eqprima.getString("nom_equipo"));
+    		    eqprima = eq1.get(1);
+    		    pronOtroUsuario.put("nombreEquipo2",eqprima.getString("nom_equipo"));
+    		    eqprima = eq1.get(2);
+    		    pronOtroUsuario.put("nombreEquipo3",eqprima.getString("nom_equipo"));
+    		    eqprima = eq1.get(3);
+    		    pronOtroUsuario.put("nombreEquipo4",eqprima.getString("nom_equipo"));
+    		    eqprima = eq2.get(0);
+    		    pronOtroUsuario.put("nombreEquipo5",eqprima.getString("nom_equipo"));
+    	        eqprima = eq2.get(1);
+    	        pronOtroUsuario.put("nombreEquipo6",eqprima.getString("nom_equipo"));
+    	        eqprima = eq2.get(2);
+    	        pronOtroUsuario.put("nombreEquipo7",eqprima.getString("nom_equipo"));
+    	        eqprima = eq2.get(3);
+    	        pronOtroUsuario.put("nombreEquipo8",eqprima.getString("nom_equipo"));
+            	List<Prediction> p = Prediction.findBySQL("SELECT * FROM predictions WHERE id_usuario = '"+userLog.id()+"' AND cod_partido IN (select cod_partido from schadules WHERE num_fecha = '"+f+"') ");
+            	pronOtroUsuario.put("golEquipo1", p.get(0).get("equipoL"));
+            	pronOtroUsuario.put("golEquipo2", p.get(0).get("equipoV"));
+            	pronOtroUsuario.put("golEquipo3", p.get(1).get("equipoL"));
+            	pronOtroUsuario.put("golEquipo4", p.get(1).get("equipoV"));
+            	pronOtroUsuario.put("golEquipo5", p.get(2).get("equipoL"));
+            	pronOtroUsuario.put("golEquipo6", p.get(2).get("equipoV"));
+            	pronOtroUsuario.put("golEquipo7", p.get(3).get("equipoL"));
+            	pronOtroUsuario.put("golEquipo8", p.get(3).get("equipoV"));
+            	pronOtroUsuario.put("fecha", f);
+            	List<Prediction> q = Prediction.findBySQL("SELECT * FROM predictions WHERE id_usuario = 1 AND cod_partido IN (select cod_partido from schadules WHERE num_fecha = '"+f+"') ");
+            	pronOtroUsuario.put("golEquipoR1",  q.get(0).get("equipoL"));
+            	pronOtroUsuario.put("golEquipoR2", q.get(0).get("equipoV"));
+            	pronOtroUsuario.put("golEquipoR3", q.get(1).get("equipoL"));
+            	pronOtroUsuario.put("golEquipoR4", q.get(1).get("equipoV"));
+            	pronOtroUsuario.put("golEquipoR5", q.get(2).get("equipoL"));
+            	pronOtroUsuario.put("golEquipoR6", q.get(2).get("equipoV"));
+            	pronOtroUsuario.put("golEquipoR7", q.get(3).get("equipoL"));
+            	pronOtroUsuario.put("golEquipoR8", q.get(3).get("equipoV"));
+        	return new ModelAndView(pronOtroUsuario, "./html/resultado.html");
+        }
+        return new ModelAndView(pronOtroUsuario, "./html/seleccionarUsuario.html");
+	}
 }

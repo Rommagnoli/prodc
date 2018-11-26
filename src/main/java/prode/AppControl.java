@@ -246,4 +246,13 @@ public class AppControl {
 	   	usuarios.put("usuarios", userList);
 	   	return new ModelAndView (usuarios, "./html/verUsuarios.html");
 	}
+	
+	public static ModelAndView verRank(Request req, Response res) {
+	   	Map ranking = new HashMap();
+		List<Point> puntos = Point.listaPuntosTotal();
+		List<User> usuarios = User.listaUserPuntosTotales();
+		ranking.put("puntos", puntos);
+		ranking.put("usuarios", usuarios);
+	   	return new ModelAndView (ranking, "./html/rank.html");
+	}
 }

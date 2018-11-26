@@ -71,6 +71,12 @@ public class User extends Model {
     	List<User> Users = User.findBySQL("SELECT username FROM users a JOIN points b ON a.id = b.idUser where b.idFecha = '"+idFecha+"' ORDER BY b.puntajeActual DESC");
     	return Users;
 	}
+    
+    public static List<User> listaUserPuntosTotales() {
+    	List<User> Users = User.findBySQL("SELECT username FROM users a JOIN points b ON a.id = b.idUser ORDER BY b.puntajeActual DESC");
+    	return Users;
+	}
+    
     public int id() {
     	return this.getInteger("id");//IMPORTANTE
     }

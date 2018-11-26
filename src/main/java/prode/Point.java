@@ -42,6 +42,10 @@ public class Point extends Model {
 		}
 		return null;
 	}
+	public static List<Point> listaPuntosTotal() {
+		List<Point> busqueda = Point.findBySQL("SELECT b.puntajeTotal FROM users a JOIN points b ON a.id = b.idUser ORDER BY b.puntajeTotal DESC");
+		return busqueda;
+	}
 	
 	public int puntajeActual() {
     	return this.getInteger("puntajeActual");

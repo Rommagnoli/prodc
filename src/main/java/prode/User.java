@@ -42,7 +42,12 @@ public class User extends Model {
 		return esta;
 	}
 		
-	
+	public boolean checkUserName(Request req) throws IllegalArgumentException {
+        String userlog = req.queryParams("user");
+        List<User> busqueda = User.where("username = ?", userlog);
+        boolean esta = (busqueda.size() != 0);
+        return esta;
+	}
 
 	public void addUser(Request req) throws IllegalArgumentException {
 		String userlog = req.queryParams("user");
